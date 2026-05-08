@@ -14,17 +14,17 @@ public class GradeService
 
     public async Task<GradeDto> GetAll()
     {
-        var items = await _reader.GetAllAsync();
-        var itemList = items.ToList();
+        var grades = await _reader.GetAllAsync();
+        var gradeList = grades.ToList();
 
-        var totalCount = itemList.Count;
-        var averageValue = itemList.Any() ? itemList.Average(i => i.Value) : 0;
+        var totalCount = gradeList.Count;
+        var averageValue = gradeList.Any() ? gradeList.Average(i => i.Value) : 0;
 
-        Console.WriteLine($"[LOG] Returning {totalCount} items, average value: {averageValue}");
+        Console.WriteLine($"[LOG] Returning {totalCount} grades, average value: {averageValue}");
 
         return new GradeDto
         {
-            Data = itemList,
+            Data = gradeList,
             Statistics = new StatisticsDto
             {
                 TotalCount = totalCount,

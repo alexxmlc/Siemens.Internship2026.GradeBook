@@ -10,7 +10,7 @@ public class GradeController : ControllerBase
 {
     private readonly GradeService _gradeService;
 
-    public GradeController(GradeService gradeService, IGradeReader reader)
+    public GradeController(GradeService gradeService)
     {
         _gradeService = gradeService;
     }
@@ -18,14 +18,14 @@ public class GradeController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
-        Console.WriteLine($"[LOG] {DateTime.UtcNow}: GET api/item called");
+        Console.WriteLine($"[LOG] {DateTime.UtcNow}: GET api/grade called");
         return Ok(await _gradeService.GetAll());
     }
 
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(int id)
     {
-        Console.WriteLine($"[LOG] {DateTime.UtcNow}: GET api/item/{id} called");
+        Console.WriteLine($"[LOG] {DateTime.UtcNow}: GET api/grade/{id} called");
 
         if (id <= 0)
         {
