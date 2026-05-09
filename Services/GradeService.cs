@@ -1,3 +1,4 @@
+using System.Reflection.Emit;
 using Siemens.Internship2026.GradeBook.Interfaces;
 using Siemens.Internship2026.GradeBook.Models;
 
@@ -38,4 +39,13 @@ public class GradeService
     {
         return await _reader.GetByIdAsync(id);
     }
+
+    public async Task<IEnumerable<Grade>> FilterPassingGradesAsync(int n)
+    {
+        var allGrades = await _reader.GetAllAsync();
+
+        var filteredGrades = allGrades.Where(i => i.IsActive && i.Value >= 5).Take(n);
+
+        return filteredGrades;
+    } 
 }

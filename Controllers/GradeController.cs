@@ -41,4 +41,17 @@ public class GradeController : ControllerBase
 
         return Ok(grade);
     }
+
+    [HttpGet("passing/{n}")]
+    public async Task<IActionResult> FilterPassingGrades(int n)
+    {
+        Console.WriteLine($"[LOG] {DateTime.UtcNow}: GET api/grade/passing/{n} called");
+
+        if (n < 0)
+        {
+            return BadRequest("N must be a positive integer.");
+        }
+
+        return Ok(await _gradeService.FilterPassingGradesAsync(n));
+    }
 }
